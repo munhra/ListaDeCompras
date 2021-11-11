@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.segundo.listadecompras.R
 import com.segundo.listadecompras.controlador.VisualizaItemActivity
-import com.segundo.listadecompras.modelo.ItemLista
+import com.segundo.listadecompras.modelo.Item
 
 class LinhaLista(view: View) : RecyclerView.ViewHolder(view) {
     val linhaListaView = view
@@ -30,7 +30,7 @@ class LinhaLista(view: View) : RecyclerView.ViewHolder(view) {
                                    null)
     }
 
-    fun configuraLinhaLista(itemLista: ItemLista) {
+    fun configuraLinhaLista(itemLista: Item) {
         val itemTextView = linhaListaView.findViewById<TextView>(R.id.itemTextView)
         val qtdTextView = linhaListaView.findViewById<TextView>(R.id.qtdTextView)
         val marcaCompradoImageView = linhaListaView.findViewById<ImageView>(R.id.marcaCompradoImageView)

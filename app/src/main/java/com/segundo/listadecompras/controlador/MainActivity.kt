@@ -26,7 +26,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        atualizaListaDeCompra()
+        ListaDeCompras.pegaTodosItensDaLista(this) {
+            atualizaListaDeCompra()
+        }
     }
 
     private fun defineBotaoAdicionaItem() {
@@ -40,7 +42,7 @@ class MainActivity : AppCompatActivity() {
     private fun defineBotaoRemoverTodos() {
         val removeTodosFloatButton = findViewById<FloatingActionButton>(R.id.removerTodosFloatButton)
         removeTodosFloatButton.setOnClickListener {
-            ListaDeCompras.removerTodosItens()
+            ListaDeCompras.removerTodosItens(this)
             atualizaListaDeCompra()
         }
     }
