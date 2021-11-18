@@ -1,11 +1,8 @@
 package com.segundo.listadecompras.modelo
 
 import android.content.Context
-import android.os.AsyncTask
 import android.os.Handler
 import android.os.Looper
-import androidx.loader.content.AsyncTaskLoader
-import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
 object ListaDeCompras {
