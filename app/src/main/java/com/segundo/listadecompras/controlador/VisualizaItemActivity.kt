@@ -10,7 +10,6 @@ import com.segundo.listadecompras.modelo.ListaDeCompras
 class VisualizaItemActivity : AppCompatActivity() {
     var itemIndice: Int? = 0
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_visualiza_item)
@@ -31,8 +30,11 @@ class VisualizaItemActivity : AppCompatActivity() {
 
         botaoComprado.text = tituloBotao
         botaoComprado.setOnClickListener {
-            ListaDeCompras.listaItens[itemIndice ?: 0].comprado = !itemComprado
-            finish()
+            val item = ListaDeCompras.listaItens[itemIndice ?: 0]
+            item.comprado = !itemComprado
+            ListaDeCompras.atualizaItemComprado(item,this) {
+                finish()
+            }
         }
     }
 }

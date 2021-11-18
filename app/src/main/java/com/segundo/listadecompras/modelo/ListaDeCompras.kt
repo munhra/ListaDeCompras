@@ -36,8 +36,25 @@ object ListaDeCompras {
         }
     }
 
-    fun removerTodosItens(context: Context) {
-        listaItens.clear()
+    fun removerTodosItens(context: Context, callBack: () -> Unit) {
+        executor.execute {
+            val dataBase = ItemDataBase.getInstance(context)
+            dataBase?.itemDao()?.deleteAll()
+            listaItens.clear()
+            handler.post {
+                callBack()
+            }
+        }
+    }
+
+    fun atualizaItemComprado(item: Item, context: Context, callBack: () -> Unit) {
+        executor.execute {
+            val dataBase = ItemDataBase.getInstance(context)
+            dataBase?.itemDao()?.update(item.comprado, item.id ?: 0)
+            handler.post {
+                callBack()
+            }
+        }
     }
 }
 

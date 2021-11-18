@@ -16,4 +16,6 @@ interface ItemDao {
     @Query("DELETE from Item")
     fun deleteAll()
 
+    @Query("UPDATE Item SET comprado=:comprado WHERE id = :id")
+    fun update(comprado: Boolean, id: Long)
 }

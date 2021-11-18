@@ -42,8 +42,9 @@ class MainActivity : AppCompatActivity() {
     private fun defineBotaoRemoverTodos() {
         val removeTodosFloatButton = findViewById<FloatingActionButton>(R.id.removerTodosFloatButton)
         removeTodosFloatButton.setOnClickListener {
-            ListaDeCompras.removerTodosItens(this)
-            atualizaListaDeCompra()
+            ListaDeCompras.removerTodosItens(this) {
+                atualizaListaDeCompra()
+            }
         }
     }
 
