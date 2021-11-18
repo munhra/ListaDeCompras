@@ -11,14 +11,16 @@ abstract class ItemDataBase: RoomDatabase() {
     abstract fun itemDao(): ItemDao
 
     companion object {
-        private var INSTANCE: ItemDataBase? = null
-        fun getInstance(context: Context): ItemDataBase? {
-            if (INSTANCE == null) {
+        private var INSTANCIA: ItemDataBase? = null
+        fun pegaInstancia(context: Context): ItemDataBase? {
+            if (INSTANCIA == null) {
                 synchronized(ItemDataBase::class) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext, ItemDataBase::class.java, "item.db").build()
+                    INSTANCIA = Room.databaseBuilder(context.applicationContext,
+                                                     ItemDataBase::class.java,
+                                                    "item.db").build()
                 }
             }
-            return INSTANCE
+            return INSTANCIA
         }
     }
 }

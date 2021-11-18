@@ -8,9 +8,9 @@ import androidx.room.Query
 interface ItemDao {
 
     @Insert
-    fun insert(item: Item)
+    fun insere(item: Item)
 
-    @Query("SELECT * from Item")
+    @Query("SELECT * from Item order by nome asc")
     fun getAllItens(): MutableList<Item>
 
     @Query("DELETE from Item")

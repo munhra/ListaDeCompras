@@ -11,14 +11,14 @@ import java.util.concurrent.Executors
 object ListaDeCompras {
 
     var listaItens = mutableListOf<Item>()
-    //var listaItens = listOf<Item>()
+
     private val executor = Executors.newSingleThreadExecutor()
     private val handler = Handler(Looper.getMainLooper())
 
     fun adicionarItemNaLista(item: Item, context: Context, callBack: () -> Unit) {
         executor.execute {
-            val dataBase = ItemDataBase.getInstance(context)
-            dataBase?.itemDao()?.insert(item)
+            val dataBase = ItemDataBase.pegaInstancia(context)
+            dataBase?.itemDao()?.insere(item)
             listaItens.add(item)
             handler.post {
                 callBack()
@@ -28,7 +28,7 @@ object ListaDeCompras {
 
     fun pegaTodosItensDaLista(context: Context, callBack: () -> Unit) {
         executor.execute {
-            val dataBase = ItemDataBase.getInstance(context)
+            val dataBase = ItemDataBase.pegaInstancia(context)
             listaItens = dataBase?.itemDao()?.getAllItens()!!
             handler.post{
                 callBack()
@@ -38,7 +38,7 @@ object ListaDeCompras {
 
     fun removerTodosItens(context: Context, callBack: () -> Unit) {
         executor.execute {
-            val dataBase = ItemDataBase.getInstance(context)
+            val dataBase = ItemDataBase.pegaInstancia(context)
             dataBase?.itemDao()?.deleteAll()
             listaItens.clear()
             handler.post {
@@ -49,7 +49,7 @@ object ListaDeCompras {
 
     fun atualizaItemComprado(item: Item, context: Context, callBack: () -> Unit) {
         executor.execute {
-            val dataBase = ItemDataBase.getInstance(context)
+            val dataBase = ItemDataBase.pegaInstancia(context)
             dataBase?.itemDao()?.update(item.comprado, item.id ?: 0)
             handler.post {
                 callBack()
