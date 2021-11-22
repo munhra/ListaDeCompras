@@ -26,7 +26,7 @@ object ListaDeCompras {
     fun pegaTodosItensDaLista(context: Context, callBack: () -> Unit) {
         executor.execute {
             val dataBase = ItemDataBase.pegaInstancia(context)
-            listaItens = dataBase?.itemDao()?.getAllItens()!!
+            listaItens = dataBase?.itemDao()?.pegaTodosItens()!!
             handler.post{
                 callBack()
             }
@@ -36,7 +36,7 @@ object ListaDeCompras {
     fun removerTodosItens(context: Context, callBack: () -> Unit) {
         executor.execute {
             val dataBase = ItemDataBase.pegaInstancia(context)
-            dataBase?.itemDao()?.deleteAll()
+            dataBase?.itemDao()?.deleteTodos()
             listaItens.clear()
             handler.post {
                 callBack()
@@ -47,7 +47,7 @@ object ListaDeCompras {
     fun atualizaItemComprado(item: Item, context: Context, callBack: () -> Unit) {
         executor.execute {
             val dataBase = ItemDataBase.pegaInstancia(context)
-            dataBase?.itemDao()?.update(item.comprado, item.id ?: 0)
+            dataBase?.itemDao()?.atualizaItem(item.comprado, item.id ?: 0)
             handler.post {
                 callBack()
             }

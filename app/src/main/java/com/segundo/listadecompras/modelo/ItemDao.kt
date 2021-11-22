@@ -11,11 +11,11 @@ interface ItemDao {
     fun insere(item: Item)
 
     @Query("SELECT * from Item order by nome asc")
-    fun getAllItens(): MutableList<Item>
+    fun pegaTodosItens(): MutableList<Item>
 
     @Query("DELETE from Item")
-    fun deleteAll()
+    fun deleteTodos()
 
     @Query("UPDATE Item SET comprado=:comprado WHERE id = :id")
-    fun update(comprado: Boolean, id: Long)
+    fun atualizaItem(comprado: Boolean, id: Long)
 }
